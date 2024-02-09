@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+}
+
+div {
+    width: 200px;
+    height: 350px;
+    background-color: azure;
+}
+
+h1 {
+    background-color: pink;
+    width: 300px;
+    padding-left: 100px;
+    padding-top: 50px;
+    margin: 0;
+}
+
+#one {
+    background-color: #ffe5d9;
+    border-width: 5px;
+    border-color: black;
+    border-style: solid;
+    box-sizing: border-box;
+    margin-left: 50px;
+    margin-top: 100px;
+}
+
+#two {
+    background-color: #a3b18a;
+    border-width: 3px;
+    border-color: #fcd5cd;
+    border-style: dashed;
+    border-left-width: 8px;
+    padding-right: 50px;
+}
+
+/* border だけで太さ，スタイル，色を指定できる */
+#three {
+    background-color: #fb8500;
+    border: 4px solid black;
+    border-radius: 5%;
+}
+
+button {
+    padding: 10px 20px 30px 40px;
+}
+
+span {
+    margin-left: 30px;
+}

@@ -1,0 +1,28 @@
+h1 {
+    background-color: palegoldenrod;
+    border: 1px solid black;
+    width: 300px;
+    height: 200px;
+    padding: 50px;
+    margin: 50px;
+    display: None;
+}
+
+span {
+    background-color: turquoise;
+    border: 1px black solid;
+    width: 500px;
+    padding: 50px;
+    margin: 50px;
+}
+
+/* inline-block inline要素のように列を占有しないがblock要素のようにwidthやheightを指定できる */
+div {
+    height: 200px;
+    width: 200px;
+    background-color: green;
+    border: 5px solid black;
+    display: inline-block;
+    margin: 50px;
+    padding: 20px;
+}

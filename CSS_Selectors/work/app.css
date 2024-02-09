@@ -1,0 +1,92 @@
+/* グローバルセレクター */
+/* * {
+    color: pink;
+    background-color: cyan;
+} */
+
+/* 要素セレクター 複数は , で繋ぐ */
+button {
+    font-size: 30px;
+    background-color: #a8dadc;
+}
+
+h1, h2 {
+    color: #1d3557;
+}
+
+body {
+    background-color: #d2c574;
+}
+
+/* IDセレクター # から始める */
+#signup {
+    color: #fefae0;
+    background-color: #1d3557;
+}
+
+/* クラスセレクター . から始める */
+.tag {
+    background-color: #e63946;
+    color: #a2d2ff;
+    font-size: 20px;
+}
+
+/* 子孫セレクター スペースで区切る　*/
+.post a {
+    color: #e63946;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+footer a {
+    color: red;
+}
+
+/* 隣接セレクター + で区切る．inputに新設するbuttonのみが選択される */
+input + button {
+    background-color: pink;
+}
+
+/* 直下セレクター > で区切る */
+footer > a {
+    color: #457b9d;
+}
+
+/* 属性セレクター [] で選択 */
+input[type="password"] {
+    color: greenyellow;
+}
+
+a[href*="google"] {
+    color: magenta;
+}
+
+/* 擬似クラス : で表す．状態を表す */
+.post button:hover {
+    background-color: red;
+}
+
+.post a:hover {
+    text-decoration: underline;
+}
+
+.post button:active {
+    background-color: aqua;
+}
+
+.post:nth-of-type(2n) {
+    background-color: #928e74;
+}
+
+/* 擬似要素 :: で表す．場所を表す */
+h2::first-letter {
+    font-size: 50px;
+}
+
+p::first-line {
+    color: purple;
+}
+
+p::selection {
+    background-color: orange;
+}

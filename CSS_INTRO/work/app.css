@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+    font-weight: normal;
+    text-decoration: orange underline;
+    text-decoration-style: wavy;
+    letter-spacing: 15px;
+    font-size: 100px;
+    /* font-family: 'Segoe UI', Futura, Arial, sans-serif; */
+    font-family: fantasy;
+}
+
+p {
+    font-weight: 100;
+    line-height: 2;
+}
+
+a {
+    text-decoration: none;
+}

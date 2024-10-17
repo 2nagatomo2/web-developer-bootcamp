@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubbling</title>
+    <style>
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section onclick="alert('セクションクリック')">
+      <p onclick="alert('段落クリック')">
+        ここは段落：
+        <button onclick="alert('ボタンクリック')">クリック</button>
+      </p>
+    </section>
+
+    <div id="container">
+      クリックして隠す
+      <button id="changeColor">色を変える</button>
+    </div>
+  </body>
+  <script src="app.js"></script>
+</html>

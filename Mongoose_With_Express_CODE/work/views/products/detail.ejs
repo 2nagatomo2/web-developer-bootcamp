@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= product.name %></title>
+  </head>
+  <body>
+    <h1><%= product.name %></h1>
+    <ul>
+      <li>値段: <%= product.price %></li>
+      <li>
+        カテゴリー:
+        <a href="/products?category=<%= product.category %>"
+          ><%= product.category %></a
+        >
+      </li>
+    </ul>
+    <a href="/products/<%= product._id %>/edit">編集</a>
+    <br />
+    <a href="/products">一覧へ戻る</a>
+    <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+      <button>商品を削除</button>
+    </form>
+  </body>
+</html>

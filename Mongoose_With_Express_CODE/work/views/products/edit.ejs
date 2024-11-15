@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>商品の編集</title>
+  </head>
+  <body>
+    <h1>商品の編集</h1>
+    <form action="/products/<%= product._id %>?_method=PATCH" method="POST">
+        <section>
+          <label for="name">商品名</label
+          ><input type="text" name="name" id="name" placeholder="商品名" value="<%= product.name %>"/>
+          <br />
+          <label for="price">価格</label>
+          <input type="number" name="price" id="price" placeholder="価格" value="<%= product.price %>"/>
+          <br />
+          <label for="category">分類</label>
+          <select name="category" id="category">
+            <% for(let category of categories ) { %>
+                <option value="<%= category %>"><%= category %></option>
+            <% } %>
+          </select>
+        </section>
+        <button>商品を編集</button>
+      </form>
+      <a href="/products/<%= product._id %>">キャンセル</a>
+    </body>
+  </body>
+</html>

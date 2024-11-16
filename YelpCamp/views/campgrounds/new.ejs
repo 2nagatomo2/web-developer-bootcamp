@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>キャンプ場の新規登録</title>
+  </head>
+  <body>
+    <h1>キャンプ場の新規登録</h1>
+    <form action="/campgrounds" method="POST">
+      <section>
+        <label for="title">キャンプ場名</label
+        ><input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="キャンプ場名"
+        />
+        <label for="price">価格</label
+        ><input type="number" name="price" id="price" placeholder="価格" />
+        <label for="location">住所</label
+        ><input
+          type="text"
+          name="location"
+          id="location"
+          ,
+          placeholder="住所"
+        />
+      </section>
+      <br />
+      <label for="description">説明</label
+      ><textarea
+        name="description"
+        id="description"
+        placeholder="説明"
+      ></textarea>
+      <br />
+      <button>新規登録</button>
+    </form>
+    <a href="/campgrounds">一覧に戻る</a>
+  </body>
+</html>

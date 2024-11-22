@@ -2,7 +2,7 @@
 <div class="row">
   <h1 class="text-center">キャンプ場の新規登録</h1>
   <div class="offset-3 col-6">
-    <form action="/campgrounds" method="POST">
+    <form action="/campgrounds" method="POST" class="validated-form" novalidate>
       <div class="mb-3">
         <label for="title" class="form-label">キャンプ場名</label
         ><input
@@ -11,7 +11,10 @@
           id="title"
           class="form-control"
           placeholder="キャンプ場名"
+          required
         />
+        <div class="valid-feedback">ok!</div>
+        <div class="invalid-feedback">キャンプ場名を入力してください</div>
       </div>
       <div class="mb-3">
         <label for="price" class="form-label">価格</label>
@@ -24,7 +27,9 @@
             class="form-control"
             placeholder="0"
             aria-describedby="price-label"
+            required
           />
+          <div class="valid-feedback">ok!</div>
         </div>
       </div>
       <div class="mb-3">
@@ -35,7 +40,9 @@
           id="location"
           class="form-control"
           placeholder="住所"
+          required
         />
+        <div class="valid-feedback">ok!</div>
       </div>
       <div class="mb-3">
         <label for="image" class="form-label">画像URL</label
@@ -45,7 +52,9 @@
           id="image"
           class="form-control"
           placeholder="画像URL"
+          required
         />
+        <div class="valid-feedback">ok!</div>
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">説明</label
@@ -54,7 +63,9 @@
           id="description"
           class="form-control"
           placeholder="説明"
+          required
         ></textarea>
+        <div class="valid-feedback">ok!</div>
       </div>
       <div class="mb-3">
         <button class="btn btn-success">新規登録</button>

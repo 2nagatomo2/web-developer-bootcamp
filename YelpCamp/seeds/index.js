@@ -24,16 +24,20 @@ const randomIndexed = (array) => {
 
 const seedDB = async () => {
   await Campground.deleteMany({});
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 30; i++) {
     const randomTitle = `${randomIndexed(descriptors)}・${randomIndexed(
       places
     )}`;
     const randomCity = randomIndexed(cities);
+    const price = Math.floor(Math.random() * 2000) + 1000;
     const camp = new Campground({
       title: randomTitle,
-      price: 10000,
-      description: "サンプルの文章",
+      price,
+      description:
+        "親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。",
       location: `${randomCity.prefecture}${randomCity.city}`,
+      image: "https://picsum.photos/800/600", // マジで適当なやつ
+      // "https://api.unsplash.com/photos/random?query=camping&client_id=cvWP9qKLAIiRApCMgfWsEQx-pHqD8ig3plksOmQapUw", // apiの使い方がようわからんかった
     });
     await camp.save();
   }

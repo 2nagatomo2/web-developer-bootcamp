@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
 const Campground = require("./models/campground");
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(express.json());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
+app.engine("ejs", ejsMate);
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -36,12 +38,13 @@ app.get("/campgrounds", async (req, res) => {
 });
 
 app.post("/campgrounds", async (req, res) => {
-  const { title, price, location, description } = req.body;
+  const { title, price, location, description, image } = req.body;
   const newCampground = new Campground({
     title,
     price,
     location,
     description,
+    image,
   });
   await newCampground.save();
   res.redirect(`campgrounds/${newCampground._id}`);
@@ -59,12 +62,13 @@ app.get("/campgrounds/:id", async (req, res) => {
 
 app.patch("/campgrounds/:id", async (req, res) => {
   const { id } = req.params;
-  const { title, price, location, description } = req.body;
+  const { title, price, location, description, image } = req.body;
   await Campground.findByIdAndUpdate(id, {
     title,
     price,
     location,
     description,
+    image,
   });
   res.redirect(`/campgrounds/${id}`);
 });

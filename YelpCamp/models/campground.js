@@ -19,6 +19,9 @@ const campGroundSchema = new Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+  },
   review: {
     type: String,
   },

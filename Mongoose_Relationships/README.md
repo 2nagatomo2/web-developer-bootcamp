@@ -67,3 +67,7 @@ const Farm = mongoose.model("Farm", farmSchema);
 ## スキーマ設計の 6 つのルール
 
 [公式ブログ](https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design)
+
+### リレーションを持っているデータの削除
+
+- findOneAndDelete を呼んだ時に mongoose の post でミドルウェアを定義し，deleteMany で対象 id のデータを消すようにする

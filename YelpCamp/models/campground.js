@@ -1,6 +1,6 @@
-const { name } = require("ejs");
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const Review = require("./review");
+const { Schema } = mongoose;
 
 const campGroundSchema = new Schema({
   title: {
@@ -23,14 +23,22 @@ const campGroundSchema = new Schema({
   image: {
     type: String,
   },
-  review: {
-    type: String,
-  },
-  evaluation: {
-    type: Number,
-    enum: [0, 1, 2, 3, 4, 5],
-  },
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 });
 
-const Campground = mongoose.model("campground", campGroundSchema);
-module.exports = Campground;
+campGroundSchema.post("findOneAndDelete", async function (doc) {
+  if (doc) {
+    await Review.deleteMany({
+      _id: {
+        $in: doc.reviews,
+      },
+    });
+  }
+});
+
+module.exports = mongoose.model("campground", campGroundSchema);

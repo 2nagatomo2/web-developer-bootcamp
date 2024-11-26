@@ -71,3 +71,5 @@ const Farm = mongoose.model("Farm", farmSchema);
 ### リレーションを持っているデータの削除
 
 - findOneAndDelete を呼んだ時に mongoose の post でミドルウェアを定義し，deleteMany で対象 id のデータを消すようにする
+- findByIdAndDelete を呼ぶときのミドルウェアのトリガーは deleteOneAndDelete になることに注意する
+- findByIdAndUpdate のなかで $pull というキーワードを使うとその後に指定したデータを持つオブジェクトを削除してくれる

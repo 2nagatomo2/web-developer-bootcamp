@@ -112,5 +112,42 @@ schema.validate(req.body);
 
 ## flash
 
+(https://www.npmjs.com/package/connect-flash)[connect-flashのnpmページ]
+
 - 常には表示されず，登録などのアクションをした後に一度だけ表示されるもの
 - `npm i connect-flash`でインストールできる
+  - session と同様に，version 次第で mongoose との間で脆弱性が生まれる場合がある
+- 以下のようにすることで，どこでも flash メソッドを req オブジェクトに対して使えるようになる
+
+  ```javascript
+  const flash = require("connect-flash");
+  app.use(flash());
+
+  app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+  });
+  ```
+
+  - res.locals はこの http リクエストに対してのみ付与できる変数．
+  - リクエストが更新されると変数は削除される
+  - flash の引数のはキーワードを設定する
+
+- ルーティング先では，以下のように書くとよい．
+  ```javascript
+  router.post(
+    "/",
+    validateCampground,
+    catchAsync(async (req, res) => {
+      const newCampground = new Campground({
+        ...req.body.campground,
+      });
+      await newCampground.save();
+      req.flash("success", "新しいキャンプ場を登録しました");
+      // ここでflashの第一引数のキーワードに対して，第二引数でメッセージを提供する
+      res.redirect(`campgrounds/${newCampground._id}`);
+    })
+  );
+  ```
+- あとはこれを partial などで html に書いて使えば良い

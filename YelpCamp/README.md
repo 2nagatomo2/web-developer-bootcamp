@@ -1,5 +1,50 @@
 # Yelp Camp
 
+## 今回用いた技術スタック
+
+### server side environment
+
+- node.js
+- nodemon
+
+### web flamework
+
+- express
+
+### database
+
+- mongodb
+
+### Database Object Adaptor
+
+- mongoose
+
+### view engine
+
+- ejs
+- ejs-mate
+
+### http method override
+
+- method-override
+
+### schema validation
+
+- joi
+
+### session, flash
+
+- express-session
+- connect-flash
+
+### authentication
+
+- passport
+- passport-local
+- passport-local-mongoose
+
+[passport を express で使うなら](https://mherman.org/blog/local-authentication-with-passport-and-express-4/)
+
 ## Validation
 
 ### JOI
@@ -112,7 +157,7 @@ schema.validate(req.body);
 
 ## flash
 
-(https://www.npmjs.com/package/connect-flash)[connect-flashのnpmページ]
+[connect-flash の公式サイト](https://www.npmjs.com/package/connect-flash)
 
 - 常には表示されず，登録などのアクションをした後に一度だけ表示されるもの
 - `npm i connect-flash`でインストールできる
@@ -151,3 +196,30 @@ schema.validate(req.body);
   );
   ```
 - あとはこれを partial などで html に書いて使えば良い
+
+## 認証
+
+### passport
+
+- express でさまざまな認証機能を実装できるライブラリ
+  [passport 公式サイト](https://www.passportjs.org/)
+
+#### passport-local
+
+- username と password のみの認証機能のサポート
+- passport, passport-local をインストールする必要がある
+- mongoose を使う場合は passport-local-mongoose も
+- schema を作成し，`schema.plugin(passportLocalMongoose)`とすることで passport を導入することができる
+- `passport.authenticate($localstrategy, $options)`で，request body の user 名とパスワードを自動で見てくれて，データベースの hash 化したパスワードと一致した場合，認証成功できる．
+- passport を使っていると，req のメソッドに isAuthenticated が追加されている．
+- req のメソッドに logout 関数も追加されている
+  - ⚠️ 動画では，`logout()`と呼ぶだけでログアウトしているが，実際は第一引数に エラー時の callback 関数を渡さないとエラーになる。
+  - [passport logout](https://www.passportjs.org/concepts/authentication/logout/)
+  - get メソッドより，post や delete メソッドで logout の処理を呼ぶ方が，偶発的な logout を避けられるという理由で，公式から推奨されている
+- req オブジェクトに login 関数もある
+  - 新規登録後は，login を明示的に呼ぶ必要がある．
+  - `passport.authenticate()`は内部で login を呼んでいる。
+- `req.user`に user 情報が格納されている。
+  - login していない場合は undefined になる。
+  - `res.locals`に currentUser 情報を入れれば，現在 user がいるかどうかがわかる。
+- ユーザー体験向上のために，login user のみが閲覧できるサイトに，非 login user が訪れた際に，req.session.retuenTo にその path を保存しておき，login 後はその path に redirect する処理を書いたが，どうしても passport.authenticate の前後で，req.session.returnTo が失われてしまう。git から download したものや udemy では大丈夫なのだが，どうしても自分のコードでは正しく動かない。

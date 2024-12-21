@@ -1,3 +1,4 @@
+const { ref } = require("joi");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -11,8 +12,9 @@ const reviewSchema = new Schema({
     type: String,
     required: true,
   },
-  user: {
+  author: {
     type: Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 

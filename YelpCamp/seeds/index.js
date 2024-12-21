@@ -38,6 +38,7 @@ const seedDB = async () => {
       location: `${randomCity.prefecture}${randomCity.city}`,
       image: "https://picsum.photos/800/600", // マジで適当なやつ
       // "https://api.unsplash.com/photos/random?query=camping&client_id=cvWP9qKLAIiRApCMgfWsEQx-pHqD8ig3plksOmQapUw", // apiの使い方がようわからんかった
+      author: "6766231357bb1707f4bd86d5",
     });
     await camp.save();
   }

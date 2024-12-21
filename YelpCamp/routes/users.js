@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
 const passport = require("passport");
 
@@ -13,7 +12,6 @@ router.post("/register", async (req, res) => {
     const { email, username, password } = req.body;
     const user = new User({ email, username });
     const registeredUser = await User.register(user, password);
-    console.log(registeredUser);
     req.flash("success", "Yelp Campへようこそ！");
     req.login(registeredUser, (err) => {
       if (err) {
@@ -35,7 +33,6 @@ router.get("/login", (req, res) => {
 router.post(
   "/login",
   (req, res, next) => {
-    console.log("before authenticate", req.session);
     next();
   },
   passport.authenticate("local", {
@@ -43,7 +40,7 @@ router.post(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    console.log("after authenticate", req.session);
+    // TODO: returnTo の実装が正しくない
     req.flash("success", "おかえりなさい！！");
     const redirectUrl = req.session.returnTo || "/campgrounds";
     delete req.session.returnTo;

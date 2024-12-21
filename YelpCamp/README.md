@@ -223,3 +223,9 @@ schema.validate(req.body);
   - login していない場合は undefined になる。
   - `res.locals`に currentUser 情報を入れれば，現在 user がいるかどうかがわかる。
 - ユーザー体験向上のために，login user のみが閲覧できるサイトに，非 login user が訪れた際に，req.session.retuenTo にその path を保存しておき，login 後はその path に redirect する処理を書いたが，どうしても passport.authenticate の前後で，req.session.returnTo が失われてしまう。git から download したものや udemy では大丈夫なのだが，どうしても自分のコードでは正しく動かない。
+
+## 認可
+
+- 自分で実装することが多い
+- login user かどうか，author かどうかなど
+- populate は path プロパティを使うことでネストできる

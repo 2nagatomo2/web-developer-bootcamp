@@ -1,4 +1,6 @@
 <% layout("layouts/boilerplate") -%>
+<link rel="stylesheet" href="/stylesheets/stars.css" />
+
 <div class="row">
   <div class="col-md-6">
     <div class="card mb-3">
@@ -44,15 +46,52 @@
     >
       <div class="mb-3">
         <label for="rating" class="form-label">評価</label>
-        <input
-          type="range"
-          class="form-range"
-          name="review[rating]"
-          id="rating"
-          min="1"
-          max="5"
-          required
-        />
+        <fieldset class="starability-basic" id="rating">
+          <input
+            type="radio"
+            id="no-rate"
+            class="input-no-rate"
+            name="review[rating]"
+            value="0"
+            checked
+            aria-label="No rating."
+          />
+          <input
+            type="radio"
+            id="first-rate1"
+            name="review[rating]"
+            value="1"
+          />
+          <label for="first-rate1" title="1">評価: 1</label>
+          <input
+            type="radio"
+            id="first-rate2"
+            name="review[rating]"
+            value="2"
+          />
+          <label for="first-rate2" title="2">評価: 2</label>
+          <input
+            type="radio"
+            id="first-rate3"
+            name="review[rating]"
+            value="3"
+          />
+          <label for="first-rate3" title="3">評価: 3</label>
+          <input
+            type="radio"
+            id="first-rate4"
+            name="review[rating]"
+            value="4"
+          />
+          <label for="first-rate4" title="4">評価: 4</label>
+          <input
+            type="radio"
+            id="first-rate5"
+            name="review[rating]"
+            value="5"
+          />
+          <label for="first-rate5" title="5">評価: 5</label>
+        </fieldset>
         <div class="valid-feedback">ok!</div>
       </div>
       <div class="mb-3">
@@ -71,9 +110,10 @@
     <% } %> <% for(let review of campground.reviews) { %>
     <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title">評価: <%= review.rating %></h5>
-        <p class="card-subtitle mb-2 text-muted">
-          ユーザー名: <%= review.author.username %>
+        <h5 class="card-title"><%= review.author.username %></h5>
+        <p class="starability-result" data-rating="<%= review.rating %>">
+          <!-- スクリーンリーダー用 -->
+          評価: <%= review.rating %> stars
         </p>
         <p class="card-text">コメント: <%= review.body %></p>
         <% if(currentUser && currentUser._id.equals(review.author._id)) { %>

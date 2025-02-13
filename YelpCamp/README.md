@@ -45,6 +45,18 @@
 
 [passport を express で使うなら](https://mherman.org/blog/local-authentication-with-passport-and-express-4/)
 
+### storage
+
+- cloudinary
+
+### image encoding
+
+- multer
+
+### environment value
+
+- dotenv
+
 ## Validation
 
 ### JOI
@@ -229,3 +241,24 @@ schema.validate(req.body);
 - 自分で実装することが多い
 - login user かどうか，author かどうかなど
 - populate は path プロパティを使うことでネストできる
+
+## 画像のアップロード
+
+- db に直接画像を置くことはしない
+  - scaling しづらいため
+  - db のデータの容量が限られている場合があるため
+- 他の storage に画像を保存し，db はその storage の url を持つようにする．
+- 今回は[cloudinary](https://console.cloudinary.com/pm/c-50a700b3917f8e426b9fe909bc192b/getting-started)を使う
+
+### multer
+
+- 画像アップロード用のパッケージ
+
+### dotenv
+
+- `npm i dotenv`
+- 環境変数を設定できる．
+- API key など他者に共有してはいけない情報は環境変数に入れる．
+- code の中で使うときは `process.env.{環境変数}`で呼び出せる．
+- .env ファイルに環境変数を格納する．
+- .env ファイルは共有してはいけないので，.gitignore に追加しておく．

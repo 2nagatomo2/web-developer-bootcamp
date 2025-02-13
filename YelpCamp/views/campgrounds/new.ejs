@@ -2,7 +2,13 @@
 <div class="row">
   <h1 class="text-center">キャンプ場の新規登録</h1>
   <div class="offset-3 col-6">
-    <form action="/campgrounds" method="POST" class="validated-form" novalidate>
+    <form
+      action="/campgrounds"
+      method="POST"
+      class="validated-form"
+      enctype="multipart/form-data"
+      novalidate
+    >
       <div class="mb-3">
         <label for="title" class="form-label">キャンプ場名</label
         ><input
@@ -47,12 +53,13 @@
       <div class="mb-3">
         <label for="image" class="form-label">画像URL</label
         ><input
-          type="text"
+          type="file"
           name="campground[image]"
           id="image"
           class="form-control"
           placeholder="画像URL"
           required
+          multiples
         />
         <div class="valid-feedback">ok!</div>
       </div>

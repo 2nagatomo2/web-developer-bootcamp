@@ -294,3 +294,8 @@ app.post("/profile", upload.single("avatar"), function (req, res, next) {
   - config では，folder 名，ファイル形式などのアップロード先の情報を記入する．
 - multer のアップロード先を，設定した storage オブジェクトにするとアップロード先を変更できる．
 - 一般的には cloud storage などの大容量のハードにファイルをアップロードし，db はそのアップロード先の path のみを持つ．
+
+### mongoose の virtual
+
+- Monfoose が提供する virtual 関数を使うと，mongodb には反映されない，仮想的なフィールドを定義することができる．
+- [参考](https://weseek.co.jp/tech/1469/)

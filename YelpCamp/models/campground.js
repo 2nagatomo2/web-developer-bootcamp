@@ -2,6 +2,16 @@ const mongoose = require("mongoose");
 const Review = require("./review");
 const { Schema } = mongoose;
 
+// thumnail の virtual フィールドを設定するために、新しく image schema を定義
+const imageSchema = new Schema({
+  url: String,
+  filename: String,
+});
+// virtual フィールドとして thumnail を定義
+imageSchema.virtual("thumbnail").get(function () {
+  return this.url.replace("/upload", "/upload/w_200");
+});
+
 const campGroundSchema = new Schema({
   title: {
     type: String,
@@ -20,12 +30,7 @@ const campGroundSchema = new Schema({
     type: String,
     required: true,
   },
-  images: [
-    {
-      url: String,
-      filename: String,
-    },
-  ],
+  images: [imageSchema],
   author: {
     type: Schema.Types.ObjectId,
     ref: "User",

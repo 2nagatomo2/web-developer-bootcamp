@@ -61,10 +61,23 @@
           class="form-control"
           placeholder="画像URL"
           accept="image/png, image/jpg, image/jpeg"
-          required
           multiple
         />
         <div class="valid-feedback">ok!</div>
+      </div>
+      <div class="mb-3">
+        <% campground.images.forEach(function(img, i) { %>
+        <img src="<%= img.url %>" class="img-thumbnail" alt="" />
+        <div class="form-check-inline">
+          <input
+            type="checkbox"
+            name="deleteImages[]"
+            id="img-<%= i %>"
+            value="<%= img.filename %>"
+          />
+          <label for="img-<%= i %>">削除する</label>
+        </div>
+        <% }) %>
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">説明</label

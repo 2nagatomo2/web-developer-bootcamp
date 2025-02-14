@@ -57,6 +57,10 @@
 
 - dotenv
 
+### file upload
+
+- multer-storage-cloudinary
+
 ## Validation
 
 ### JOI
@@ -252,7 +256,28 @@ schema.validate(req.body);
 
 ### multer
 
-- 画像アップロード用のパッケージ
+- urlencoded を使うと，request body に form からの情報が格納される．
+- 画像などのファイルをアップロードするときは，encode を urlencode ではなく，`multipart/form-data`にしなくてはいけない．
+- form タグで，`enctype="multipart/form-data"`とする必要がある．
+- js でファイルを扱うには multer などのパッケージが必要である．[multer](https://www.npmjs.com/package/multer)
+- multer は request object に body と file (または files) というプロパティを追加してくれる．
+  - body は今までと同じ
+  - file / files には file が入っている．
+- 以下のように form で指定した name を使って，req.file にファイルを入れる．
+- upload は server のどこにファイルをアップロードするかということ
+
+```javascript
+const express = require("express");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
+const app = express();
+
+app.post("/profile", upload.single("avatar"), function (req, res, next) {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+});
+```
 
 ### dotenv
 
@@ -262,3 +287,10 @@ schema.validate(req.body);
 - code の中で使うときは `process.env.{環境変数}`で呼び出せる．
 - .env ファイルに環境変数を格納する．
 - .env ファイルは共有してはいけないので，.gitignore に追加しておく．
+
+### cloudinary, cloudinary storage
+
+- multer-storage-cloudinary を使って，storage の設定を定義する．
+  - config では，folder 名，ファイル形式などのアップロード先の情報を記入する．
+- multer のアップロード先を，設定した storage オブジェクトにするとアップロード先を変更できる．
+- 一般的には cloud storage などの大容量のハードにファイルをアップロードし，db はそのアップロード先の path のみを持つ．

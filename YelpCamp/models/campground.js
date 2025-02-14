@@ -20,9 +20,12 @@ const campGroundSchema = new Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-  },
+  image: [
+    {
+      url: String,
+      filename: String,
+    },
+  ],
   author: {
     type: Schema.Types.ObjectId,
     ref: "User",

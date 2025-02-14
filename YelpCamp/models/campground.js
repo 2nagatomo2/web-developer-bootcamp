@@ -20,7 +20,7 @@ const campGroundSchema = new Schema({
     type: String,
     required: true,
   },
-  image: [
+  images: [
     {
       url: String,
       filename: String,

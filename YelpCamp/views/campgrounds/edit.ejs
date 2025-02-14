@@ -6,6 +6,7 @@
       action="/campgrounds/<%= campground._id %>?_method=PATCH"
       method="POST"
       class="validated-form"
+      enctype="multipart/form-data"
       novalidate
     >
       <div class="mb-3">
@@ -52,15 +53,16 @@
         <div class="valid-feedback">ok!</div>
       </div>
       <div class="mb-3">
-        <label for="image" class="form-label">画像URL</label
+        <label for="images" class="form-label">画像を追加</label
         ><input
-          type="text"
-          name="campground[image]"
-          id="image"
+          type="file"
+          name="images"
+          id="images"
           class="form-control"
           placeholder="画像URL"
-          value="<%= campground.image %>"
+          accept="image/png, image/jpg, image/jpeg"
           required
+          multiple
         />
         <div class="valid-feedback">ok!</div>
       </div>

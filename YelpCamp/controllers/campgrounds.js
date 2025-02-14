@@ -40,9 +40,15 @@ module.exports.createCampground = async (req, res) => {
 
 module.exports.updateCampgrounds = async (req, res) => {
   const { id } = req.params;
-  const c = await Campground.findByIdAndUpdate(id, {
+  const campground = await Campground.findByIdAndUpdate(id, {
     ...req.body.campground,
   });
+  const imgs = req.files.map((f) => ({
+    url: f.path,
+    filename: f.filename,
+  }));
+  campground.images.push(...imgs);
+  await campground.save();
   req.flash("success", "キャンプ場を更新しました");
   res.redirect(`/campgrounds/${id}`);
 };
